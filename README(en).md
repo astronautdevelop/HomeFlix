@@ -65,3 +65,22 @@ Assicurati che il server PostgreSQL sia in esecuzione.
 Crea un nuovo database per HomeFlix (ad esempio, homeflix).
 
 Nella cartella backend, crea un file chiamato .env e aggiungi la stringa di connessione al database, insieme alle altre variabili d'ambiente:
+
+# Database
+DATABASE_URL="postgresql://postgres:password@localhost:5432/homeflix?schema=public"
+
+# Percorsi media (array JSON)
+MEDIA_ROOTS='["C:/Users/TuoUtente/Media/Film", "E:/Media/SerieTV"]'
+
+# TMDB API Key (opzionale, ma necessaria per i metadati automatici)
+TMDB_API_KEY="la_tua_chiave_api_tmdb"
+
+# Cache path (opzionale)
+CACHE_PATH=".homeflix/cache"
+
+graph LR
+    A[Frontend React] -->|HTTP / WebSocket| B[Backend NestJS]
+    B -->|Prisma| C[(PostgreSQL)]
+    B -->|Axios| D[TMDB API]
+    B -->|File System| E[Media Roots]
+    B -->|Cache| F[.homeflix/cache]
