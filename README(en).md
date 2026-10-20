@@ -84,3 +84,11 @@ graph LR
     B -->|Axios| D[TMDB API]
     B -->|File System| E[Media Roots]
     B -->|Cache| F[.homeflix/cache]
+
+<div align="center">
+⭐ Se ti piace HomeFlix, lascia una stella al progetto! ⭐
+Made with ❤️ for the self-hosted community
+
+https://img.shields.io/badge/HomeFlix-Enjoy%20your%20movies-FFD700?style=for-the-badge&logo=netflix&logoColor=black
+
+</div>
