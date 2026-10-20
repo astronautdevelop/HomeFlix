@@ -58,3 +58,10 @@ Follow these steps to run the application on your computer.
 ```bash
 git clone https://github.com/astronautdevelop/homeflix.git
 cd homeflix
+
+### 2. Configura il database PostgreSQL
+Assicurati che il server PostgreSQL sia in esecuzione.
+
+Crea un nuovo database per HomeFlix (ad esempio, homeflix).
+
+Nella cartella backend, crea un file chiamato .env e aggiungi la stringa di connessione al database, insieme alle altre variabili d'ambiente:
