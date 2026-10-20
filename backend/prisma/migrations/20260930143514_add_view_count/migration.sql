@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Media" ADD COLUMN     "viewCount" INTEGER NOT NULL DEFAULT 0;

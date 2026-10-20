@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Media" ALTER COLUMN "genres" DROP NOT NULL,
+ALTER COLUMN "actors" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Series" ALTER COLUMN "genres" DROP NOT NULL,
+ALTER COLUMN "actors" DROP NOT NULL;

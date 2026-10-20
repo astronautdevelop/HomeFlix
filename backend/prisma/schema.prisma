@@ -1,0 +1,203 @@
+// =========================================
+// DATASOURCE e GENERATOR (OBLIGATORI)
+// =========================================
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// =========================================
+// ENUM
+// =========================================
+
+enum MediaType {
+  MOVIE
+  EPISODE
+  PERSONAL
+}
+
+// =========================================
+// MODELLI
+// =========================================
+
+model Media {
+  id              String    @id @default(cuid())
+  hash            String    @unique
+  title           String
+  originalTitle   String?
+  plot            String?
+  runtime         Int?      // minuti
+  releaseYear     Int?
+  genres          Json?      // array di stringhe (es. ["Action", "Drama"]) Ora Opzionale
+  actors          Json?      // array di stringhe Ora Opzionale
+  director        String?
+  country         String?
+  language        String?
+  revenue         Float?
+  oscarAwards     Int?
+  rating          Float?
+  trailerUrl      String?
+  posterUrl       String?
+  backgroundUrl   String?
+  logoUrl         String?
+  metadataSource  String?   // 'local', 'tmdb', 'default'
+  type            MediaType @default(MOVIE)
+  folderPath      String?
+  available       Boolean   @default(true)
+  viewCount       Int       @default(0) 
+
+  // Relazioni per episodi
+  seasonId        String?
+  season          Season?   @relation(fields: [seasonId], references: [id])
+  episodeNumber   Int?
+
+  // Relazione per serie (se è una serie, avrà stagioni, ma qui è il media che appartiene a una serie se è un episodio)
+  seriesId        String?
+  series          Series?   @relation(fields: [seriesId], references: [id])
+
+  // Relazioni
+  versions        MediaVersion[]
+  collections     CollectionMedia[]
+  watchHistory    WatchHistory[]
+  favorites       Favorite[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([title])
+  @@index([releaseYear])
+}
+
+model MediaVersion {
+  id            String    @id @default(cuid())
+  mediaId       String
+  media         Media     @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+  quality       String    // '1080p', '4K', 'DVD', ecc.
+  filePath      String    // percorso assoluto
+  size          BigInt?
+  lastModified  DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([mediaId, quality])
+  @@index([filePath])
+}
+
+model Series {
+  id              String    @id @default(cuid())
+  title           String
+  originalTitle   String?
+  plot            String?
+  releaseYear     Int?
+  runtime         Int?      // ← [NEW] durata media episodi in minuti
+  genres          Json?
+  actors          Json?
+  director        String?
+  country         String?
+  language        String?
+  rating          Float?
+  posterUrl       String?
+  backgroundUrl   String?
+  logoUrl         String?
+  metadataSource  String?
+
+  seasons         Season[]
+  medias          Media[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([title])
+}
+
+model Season {
+  id              String    @id @default(cuid())
+  seriesId        String
+  series          Series    @relation(fields: [seriesId], references: [id], onDelete: Cascade)
+  seasonNumber    Int
+  title           String?
+  plot            String?
+  posterUrl       String?
+  backgroundUrl   String?
+  releaseYear     Int?
+  episodes        Media[]   // gli episodi sono Media con type=EPISODE
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([seriesId, seasonNumber])
+}
+
+model Collection {
+  id              String    @id @default(cuid())
+  name            String
+  description     String?
+  posterUrl       String?
+  backgroundUrl   String?
+  customOrder     String?   // JSON array di ID media per ordinamento
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  media           CollectionMedia[]
+}
+
+model CollectionMedia {
+  collectionId String
+  mediaId      String
+  media        Media      @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  order        Int?
+
+  @@id([collectionId, mediaId])
+}
+
+model WatchHistory {
+  id              String    @id @default(cuid())
+  mediaId         String
+  media           Media     @relation(fields: [mediaId], references: [id])
+  quality         String?   // qualità usata
+  progress        Float?    // secondi o percentuale
+  watchedAt       DateTime  @default(now())
+}
+
+model Favorite {
+  id              String    @id @default(cuid())
+  mediaId         String    @unique
+  media           Media     @relation(fields: [mediaId], references: [id])
+  createdAt       DateTime  @default(now())
+}
+
+model ScanLog {
+  id              String    @id @default(cuid())
+  startedAt       DateTime  @default(now())
+  endedAt         DateTime?
+  status          String    // 'running', 'completed', 'failed'
+  details         Json?
+  type            String    // 'full', 'incremental', 'watch'
+}
+
+model NotificationLog {
+  id        String   @id @default(cuid())
+  type      String   // 'info', 'success', 'warning', 'error'
+  message   String
+  details   Json?    // Dati aggiuntivi (es. { mediaId, added: 5 })
+  createdAt DateTime @default(now())
+  read      Boolean  @default(false)
+  ttl       DateTime? // Data di scadenza per pulizia automatica
+
+  @@index([createdAt])
+  @@index([type])
+}
+
+// =========================================
+// IMPOSTAZIONI
+// =========================================
+
+model Setting {
+  key   String @id @unique   // 'app_settings'
+  value Json                 // oggetto con tmdbApiKey, mediaRoots
+  updatedAt DateTime @updatedAt
+}

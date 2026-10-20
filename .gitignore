@@ -1,0 +1,28 @@
+# Dipendenze (non devono essere caricate)
+node_modules/
+/backend/node_modules
+/frontend/node_modules
+
+# File di ambiente (contengono dati sensibili)
+.env
+.env.local
+.env.*.local
+
+# Cache e file temporanei dell'applicazione
+.homeflix/
+.agents/
+.claude/
+.windsurf/
+
+# Build e output di compilazione
+dist/
+build/
+
+# File di log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# File di sistema (opzionale, ma consigliato)
+.DS_Store
+Thumbs.db

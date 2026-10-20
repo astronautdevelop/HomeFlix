@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="180"
+   height="180"
+   viewBox="0 0 180 180"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="180"
+       height="180"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <pattern
+       inkscape:collect="always"
+       xlink:href="#Strips4_1"
+       preserveAspectRatio="xMidYMid"
+       id="pattern27"
+       patternTransform="matrix(3.204294,-1.85,1.85,3.204294,0,0)"
+       x="0"
+       y="0" />
+    <pattern
+       inkscape:collect="always"
+       patternUnits="userSpaceOnUse"
+       width="1.25"
+       height="1"
+       patternTransform="translate(0,0) scale(2,2)"
+       preserveAspectRatio="xMidYMid"
+       id="Strips4_1"
+       style="fill:#ffffff"
+       inkscape:stockid="Stripes 13 (4:1)"
+       inkscape:isstock="true"
+       inkscape:label="Strisce 13 (4:1)">
+      <rect
+   style="stroke:none"
+   x="0"
+   y="-0.5"
+   width="1"
+   height="2"
+   id="rect203" />
+
+    </pattern>
+    <rect
+       x="-1.2631578"
+       y="-37.894737"
+       width="185.26315"
+       height="140.63158"
+       id="rect3" />
+  </defs>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:124.712px;font-family:Inlanders;-inkscape-font-specification:'Inlanders, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:inline;fill:url(#pattern27);fill-opacity:1;stroke-width:1.29908;stroke-linecap:round"
+       x="1.4736857"
+       y="120.11215"
+       id="text2"
+       sodipodi:insensitive="true"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         x="1.4736857"
+         y="120.11215"
+         style="fill:url(#pattern27);fill-opacity:1;stroke-width:1.29908">mm</tspan></text>
+    <text
+       xml:space="preserve"
+       id="text3"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:32px;font-family:Inlanders;-inkscape-font-specification:'Inlanders, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);fill:#ffffff;fill-opacity:1;stroke-linecap:round"
+       transform="matrix(1.1135015,0,0,1.1135015,2.6697445,155.9197)"><tspan
+         x="-1.2636719"
+         y="-8.371604"
+         id="tspan1">MeloMovie</tspan></text>
+  </g>
+</svg>
