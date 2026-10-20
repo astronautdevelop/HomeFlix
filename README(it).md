@@ -50,5 +50,5 @@ Segui questi passaggi per avviare l'applicazione sul tuo computer.
 ### 1. Clona il repository (o scarica lo ZIP)
 
 ```bash
-git clone https://github.com/tuo-username/homeflix.git
+git clone https://github.com/astronautdevelop/homeflix.git
 cd homeflix
